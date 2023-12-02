@@ -8,20 +8,7 @@
  */
 int print_int(va_list l, flags_t *f)
 {
-    int n = va_arg(l, int);
-
-    if (f->plus)
-    {
-        if (n >= 0)
-            _putchar('+');
-    }
-    else if (f->space)
-    {
-        if (n >= 0)
-            _putchar(' ');
-    }
-
-    return count_digit(n) + print_unsigned_helper(n, f, 10);
+    return count_digit(va_arg(l, int)) + print_unsigned(va_arg(l, unsigned int), f);
 }
 
 /**
@@ -66,13 +53,8 @@ int print_unsigned(va_list l, flags_t *f)
 int print_unsigned_helper(unsigned int n, flags_t *f, int base)
 {
     char *str = convert(n, base, 0);
-
-    if (!str)
-        return -1;
-
     int len = _puts(str);
     free(str);
-
     return len;
 }
 

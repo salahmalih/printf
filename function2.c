@@ -19,11 +19,8 @@ int print_hex(va_list l, flags_t *f)
  */
 int print_hex_big(va_list l, flags_t *f)
 {
-    char *str = convert(va_arg(l, unsigned int), 16, 1);
-
-    if (!str)
-        return -1;
-
+    UNUSED(f);
+    char *str = convert(va_arg(l, unsigned long int), 16, 1);
     int len = _puts(str);
     free(str);
 
@@ -50,11 +47,8 @@ int print_octal(va_list l, flags_t *f)
 int print_string(va_list l, flags_t *f)
 {
     char *str = va_arg(l, char *);
-
-    if (!str)
-        str = "(null)";
-
     int len = _puts(str);
+    UNUSED(f);
 
     return len;
 }

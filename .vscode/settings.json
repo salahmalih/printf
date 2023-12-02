@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"*.vb": "vb",
-		"stdarg.h": "c"
+		"stdarg.h": "c",
+		"stdlib.h": "c"
 	}
 }

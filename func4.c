@@ -1,18 +1,12 @@
+// func4.c
+
 #include "main.h"
 
-/**
- * print_rot13 - Applies the ROT13 substitution cipher to a string
- * @l: Argument list
- * @f: Pointer to flags structure
- * Return: Number of characters printed
- */
 int print_rot13(va_list l, flags_t *f)
 {
+    UNUSED(f); // Fix unused parameter warning
     char *str = va_arg(l, char *);
     int count = 0;
-
-    if (!str)
-        return -1;
 
     while (*str)
     {
@@ -33,14 +27,9 @@ int print_rot13(va_list l, flags_t *f)
     return count;
 }
 
-/**
- * print_rot13string - Prints a ROT13-encoded string
- * @l: Argument list
- * @f: Pointer to flags structure
- * Return: Number of characters printed
- */
 int print_rot13string(va_list l, flags_t *f)
 {
+    UNUSED(f); // Fix unused parameter warning
     char *str = va_arg(l, char *);
     int count = 0;
 

@@ -8,6 +8,7 @@
  */
 int print_reverse(va_list l, flags_t *f)
 {
+    UNUSED(f);
     char *str = va_arg(l, char *);
     int len = _strlen(str) - 1;
 
@@ -61,6 +62,7 @@ int print_non_printable(va_list l, flags_t *f)
  */
 int print_pointer(va_list l, flags_t *f)
 {
+    UNUSED(f); // Fix unused parameter warning
     void *ptr = va_arg(l, void *);
     unsigned long int address = (unsigned long int)ptr;
 
