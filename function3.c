@@ -1,104 +1,91 @@
 #include "main.h"
 
 /**
- * print_rev - Prints a reversed string
- * @l: va_list containing the string
+ * print_reverse - Prints a reversed string
+ * @l: Argument list
  * @f: Pointer to flags structure
  * Return: Number of characters printed
  */
-int print_rev(va_list l, flags_t *f)
+int print_reverse(va_list l, flags_t *f)
 {
     char *str = va_arg(l, char *);
-    int count = 0;
+    int len = _strlen(str) - 1;
 
-    if (!str)
-        str = "(null)";
-
-    count += _strlen(str);
-
-    while (*str)
+    while (len >= 0)
     {
-        _putchar(*(str + count - 1));
-        count--;
+        _putchar(str[len]);
+        len--;
     }
 
-    return count;
+    return _strlen(str);
 }
 
 /**
- * print_percent - Prints a percent character
- * @l: va_list (unused)
- * @f: Pointer to flags structure
- * Return: Always 1 (number of characters printed)
- */
-int print_percent(va_list l, flags_t *f)
-{
-    (void)l; /* Unused parameter */
-    _putchar('%');
-    return 1;
-}
-
-/**
- * print_rot13 - Prints a string in ROT13 encoding
- * @l: va_list containing the string
+ * print_non_printable - Prints non-printable characters in hexadecimal
+ * @l: Argument list
  * @f: Pointer to flags structure
  * Return: Number of characters printed
  */
-int print_rot13(va_list l, flags_t *f)
+int print_non_printable(va_list l, flags_t *f)
 {
-    char *str = va_arg(l, char *);
     int count = 0;
+    char *str = va_arg(l, char *);
 
     if (!str)
-        str = "(null)";
+        return -1;
 
-    while (*str)
+    for (int i = 0; str[i] != '\0'; i++)
     {
-        if ((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z'))
+        if (str[i] < 32 || str[i] >= 127)
         {
-            _putchar(rotate_13(*str));
-            count++;
+            _putchar('\\');
+            _putchar('x');
+            count += 2;
+            count += print_hex_helper(str[i], 1);
         }
         else
         {
-            _putchar(*str);
+            _putchar(str[i]);
             count++;
         }
-        str++;
     }
 
     return count;
 }
 
 /**
- * rotate_13 - Applies ROT13 encoding to a character
- * @c: The character to encode
- * Return: The encoded character
+ * print_pointer - Prints a pointer address
+ * @l: Argument list
+ * @f: Pointer to flags structure
+ * Return: Number of characters printed
  */
-char rotate_13(char c)
+int print_pointer(va_list l, flags_t *f)
 {
-    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-    {
-        char base = (c >= 'a' && c <= 'z') ? 'a' : 'A';
-        return ((c - base + 13) % 26) + base;
-    }
-    return c;
+    void *ptr = va_arg(l, void *);
+    unsigned long int address = (unsigned long int)ptr;
+
+    _putchar('0');
+    _putchar('x');
+
+    return print_hex_helper(address, 0) + 2;
 }
 
 /**
- * print_number - Prints an integer without considering flags
- * @n: The integer to print
+ * print_hex_helper - Helper function to print a hexadecimal number
+ * @n: The number to print
+ * @uppercase: Flag to print in uppercase
+ * Return: Number of characters printed
  */
-void print_number(int n)
+int print_hex_helper(unsigned long int n, int uppercase)
 {
-    if (n < 0)
-    {
-        _putchar('-');
-        n = -n;
-    }
+    char *hex_digits = (uppercase) ? "0123456789ABCDEF" : "0123456789abcdef";
+    int count = 0;
 
-    if (n / 10)
-        print_number(n / 10);
+    if (n / 16)
+        count += print_hex_helper(n / 16, uppercase);
 
-    _putchar((n % 10) + '0');
+    _putchar(hex_digits[n % 16]);
+    count++;
+
+    return count;
 }

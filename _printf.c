@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- * _printf - Produces output according to a format
+ * _printf - Custom printf function
  * @format: The format string
+ * @...: Additional arguments for format specifiers
  * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
@@ -12,40 +13,35 @@ int _printf(const char *format, ...)
 
     va_start(args, format);
 
-    if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-        return -1; /* Invalid format string */
-
-    while (*format)
+    while (format && *format)
     {
         if (*format == '%')
         {
             format++;
-            if (*format)
-            {
-                flags_t flags = {0, 0, 0, 0, 0, 0, 0}; /* Initialize flags */
-                int (*printer)(va_list, flags_t *);
+            if (*format == '\0')
+                break;
 
-                /* Process flags */
-                while (get_flag(*format, &flags))
-                    format++;
-
-                /* Get printing function */
-                printer = get_print(*format);
-
-                if (printer != NULL)
-                    count += printer(args, &flags);
-                else
-                    _putchar('%'); /* Print the '%' character */
-
+            flags_t flags = {0, 0, 0, 0, 0, 0, 0};
+            while (get_flag(*format, &flags))
                 format++;
+
+            int (*printer)(va_list, flags_t *) = get_print(*format);
+            if (printer)
+                count += printer(args, &flags);
+            else
+            {
+                _putchar('%');
+                _putchar(*format);
+                count += 2;
             }
         }
         else
         {
             _putchar(*format);
             count++;
-            format++;
         }
+
+        format++;
     }
 
     va_end(args);

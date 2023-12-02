@@ -1,36 +1,36 @@
 #include "main.h"
 
 /**
- * get_flag - Calculates active flags based on a character
- * @s: The character representing a flag
- * @f: Pointer to the flags structure to update
- * Return: 1 if successful, 0 otherwise
+ * get_flag - Gets the active flags from the format specifier
+ * @s: The format specifier character
+ * @f: Pointer to flags structure to store active flags
+ * Return: 1 if flag is active, 0 otherwise
  */
 int get_flag(char s, flags_t *f)
 {
-    int success = 1;
+    int flag_active = 1;
 
     switch (s)
     {
-    case '+':
-        f->plus = 1;
-        break;
-    case ' ':
-        f->space = 1;
-        break;
-    case '#':
-        f->hash = 1;
-        break;
-    case '0':
-        f->zero = 1;
-        break;
-    case '-':
-        f->minus = 1;
-        break;
-    default:
-        success = 0; /* Not a valid flag character */
-        break;
+        case '+':
+            f->plus = 1;
+            break;
+        case ' ':
+            f->space = 1;
+            break;
+        case '#':
+            f->hash = 1;
+            break;
+        case '0':
+            f->zero = 1;
+            break;
+        case '-':
+            f->minus = 1;
+            break;
+        default:
+            flag_active = 0;
+            break;
     }
 
-    return success;
+    return flag_active;
 }

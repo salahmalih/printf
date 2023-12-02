@@ -1,11 +1,9 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * _putchar - Writes a character to stdout
  * @c: The character to print
- * Return: 1 on success, -1 on error
+ * Return: On success, returns the number of characters written, otherwise -1
  */
 int _putchar(char c)
 {
@@ -15,68 +13,66 @@ int _putchar(char c)
 /**
  * _puts - Writes a string to stdout
  * @str: The string to print
+ * Return: On success, returns the number of characters written, otherwise -1
  */
 int _puts(char *str)
 {
-    int i = 0;
-
-    while (str[i])
+    int len = 0;
+    while (str[len] != '\0')
     {
-        if (_putchar(str[i]) == -1)
-            return -1;
-        i++;
+        _putchar(str[len]);
+        len++;
     }
-    return i;
+    return len;
 }
 
 /**
- * _strdup - Duplicates a string using malloc
+ * _strdup - Duplicates a string
  * @str: The string to duplicate
- * Return: Pointer to the duplicated string or NULL on failure
+ * Return: A pointer to the duplicated string
  */
 char *_strdup(const char *str)
 {
-    char *dup;
-    int i, len = 0;
+    int len = 0;
+    char *dup_str;
 
-    if (!str)
+    if (str == NULL)
         return NULL;
 
-    while (str[len])
+    while (str[len] != '\0')
         len++;
 
-    dup = malloc((len + 1) * sizeof(char));
-
-    if (!dup)
+    dup_str = malloc((len + 1) * sizeof(char));
+    if (dup_str == NULL)
         return NULL;
 
-    for (i = 0; i <= len; i++)
-        dup[i] = str[i];
+    for (int i = 0; i <= len; i++)
+        dup_str[i] = str[i];
 
-    return dup;
+    return dup_str;
 }
 
 /**
- * _strlen - Computes the length of a string
+ * _strlen - Calculates the length of a string
  * @str: The string
- * Return: Length of the string
+ * Return: The length of the string
  */
 int _strlen(const char *str)
 {
     int len = 0;
 
-    while (str[len])
+    while (str[len] != '\0')
         len++;
 
     return len;
 }
 
 /**
- * _strncat - Concatenates two strings
+ * _strncat - Concatenates n characters from a string
  * @dest: The destination string
  * @src: The source string
- * @n: The maximum number of characters to concatenate
- * Return: Pointer to the resulting string
+ * @n: The number of characters to concatenate
+ * Return: A pointer to the concatenated string
  */
 char *_strncat(char *dest, const char *src, int n)
 {
