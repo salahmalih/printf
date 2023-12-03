@@ -18,15 +18,11 @@ int _putchar(char c)
  */
 int _puts(char *str)
 {
-    int i = 0;
+	int i;
 
-    while (str[i] != '\0')
-    {
-        if (_putchar(str[i]) == -1)
-            return (-1);
-        i++;
-    }
-    return (i);
+	for (i = 0; str[i] != '\0'; i++)
+		_putchar(str[i]);
+	return (i);
 }
 
 
@@ -54,9 +50,10 @@ int _strlen(char *str)
 char *convert(unsigned long int num, int base, int lowercase)
 {
     static char buffer[50];
-    char *ptr = &buffer[49];
+    char * ptr;
     static char *rep;
 
+    ptr = &buffer[49];
     rep = (lowercase)
         ? "0123456789ABCDEF"
         : "0123456789abcdef";
