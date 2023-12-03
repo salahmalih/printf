@@ -64,8 +64,10 @@ int print_bigS(va_list l, flags_t *f)
 int print_rev(va_list l, flags_t *f)
 {
     int count = 0;
-    char *str = va_arg(l, char *);
+    char *str;
 
+    UNUSED(f);
+    str = va_arg(l, char *);
     if (str == NULL)
         str = "(null)";
 
@@ -82,12 +84,13 @@ int print_rev(va_list l, flags_t *f)
 int _puts_reverse(char *str)
 {
     int count = 0;
+    int i;
     if (str == NULL)
         return _puts("(null)");
 
     int length = _strlen(str);
 
-    for (int i = length - 1; i >= 0; i--)
+    for (i = length - 1; i >= 0; i--)
     {
         count += _putchar(str[i]);
     }
