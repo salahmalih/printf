@@ -9,9 +9,10 @@
 int print_int(va_list l, flags_t *f)
 {
 	int num;
-	int count = 0;
+	int count;
 
 	num = va_arg(l, int);
+	count = count_digit(num);
 	if (f->plus && num >= 0)
 		count += _putchar('+');
 	else if (f->space && num >= 0)
