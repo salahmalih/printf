@@ -20,15 +20,12 @@ int _printf(const char *format, ...)
 			init_flags(&flags);
 			format++;
 			while (get_flag(*format, &flags) == 0)
-			{
 				format++;
-			}
+
 			printer = get_print(*format);
 
 			if (printer != NULL)
-			{
 				count += printer(args, &flags);
-			}
 			else
 			{
 				count += _putchar('%');
@@ -42,6 +39,7 @@ int _printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
+
 	return (count);
 }
 /**
