@@ -87,5 +87,4 @@ int print_percent(va_list l, flags_t *f);
 
 /* tools */
 int _strlen(char *str);
-int _puts_reverse(char *str);
 #endif
