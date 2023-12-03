@@ -53,6 +53,8 @@ int print_bigS(va_list l, flags_t *f)
     return (count);
 }
 
+#include "main.h"
+
 /**
  * print_rev - Prints a reversed string
  * @l: The argument list containing the string to print
@@ -62,18 +64,33 @@ int print_bigS(va_list l, flags_t *f)
 int print_rev(va_list l, flags_t *f)
 {
     int count = 0;
-    char *str;
+    char *str = va_arg(l, char *);
 
-    UNUSED(f);
-    str = va_arg(l, char *);
-    if (!str)
+    if (str == NULL)
         str = "(null)";
 
-    for (count = 0; str[count] != '\0'; count++)
-        ;
+    count += _puts_reverse(str);
 
-    for (count--; count >= 0; count--)
-        _putchar(str[count]);
+    return (count);
+}
+
+/**
+ * _puts_reverse - Prints a string in reverse
+ * @str: The string to print in reverse
+ * Return: Number of characters printed
+ */
+int _puts_reverse(char *str)
+{
+    int count = 0;
+    if (str == NULL)
+        return _puts("(null)");
+
+    int length = _strlen(str);
+
+    for (int i = length - 1; i >= 0; i--)
+    {
+        count += _putchar(str[i]);
+    }
 
     return (count);
 }
