@@ -9,10 +9,11 @@ int _printf(const char *format, ...)
 {
     va_list args;
     int count = 0;
+     flags_t flags = {0, 0, 0, 0, 0, 0, 0};
+    int (*printer)(va_list, flags_t *);
 
     va_start(args, format);
-    flags_t flags = {0, 0, 0, 0, 0, 0, 0};
-    int (*printer)(va_list, flags_t *) = get_print(*format);
+    printer= get_print(*format);
     while (format && *format)
     {
         if (*format == '%')
