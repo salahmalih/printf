@@ -70,29 +70,3 @@ int print_string(va_list l, flags_t *f)
 
 	return (_puts(s));
 }
-/**
- * count_digit - returns the number of digits in an integer
- * for _printf
- * @i: integer to evaluate
- * Return: number of digits
- */
-int count_digit(int i)
-{
-	unsigned int d = 0;
-	unsigned int u;
-
-	if (i == 0)
-		return (1);
-
-	if (i < 0)
-		u = (unsigned int)(-i);
-	else
-		u = (unsigned int)i;
-
-	while (u != 0)
-	{
-		u /= 10;
-		d++;
-	}
-	return (d);
-}
