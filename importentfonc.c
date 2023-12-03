@@ -58,11 +58,51 @@ int convert_and_print(unsigned long int num, int base, int uppercase)
 
     converted = convert(num, base, uppercase);
     if (converted == NULL)
-        return -1; /* Conversion failed */
+        return -1;
 
     count += _puts(converted);
 
     free(converted);
 
     return (count);
+}
+
+/**
+ * convert - Converts a number to a specified base and returns the result as a string
+ * @num: The number to convert
+ * @base: The base to convert to
+ * @lowercase: Flag to indicate whether to use lowercase (1) or uppercase (0) letters
+ * Return: A pointer to the converted string, or NULL on failure
+ */
+char *convert(unsigned long int num, int base, int lowercase)
+{
+    char *result;
+    char *digits = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
+    int size = 0;
+    unsigned long int temp = num;
+
+    while (temp != 0)
+    {
+        temp /= base;
+        size++;
+    }
+
+    if (num == 0)
+        size = 1;
+
+    result = malloc((size + 1) * sizeof(char));
+
+    if (result == NULL)
+        return NULL;
+
+    result[size] = '\0';
+
+    do
+    {
+        size--;
+        result[size] = digits[num % base];
+        num /= base;
+    } while (num != 0);
+
+    return result;
 }
