@@ -27,10 +27,8 @@ int _printf(const char *format, ...)
             else
             {
                 count += _putchar('%');
-                count += _putchar(*(format + 1));
+                count += _putchar(*(format));
             }
-
-            format++;
         }
         else
         {
