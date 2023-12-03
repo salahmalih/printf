@@ -62,10 +62,16 @@ int print_rot13(va_list l, flags_t *f)
 int print_string(va_list l, flags_t *f)
 {
 	char *s;
+	int count = 0;
 
 	s = va_arg(l, char *);
 	UNUSED(f);
 	if (!s)
-		s = "(nil)";
-	return (_puts(s));
+		s = "(null)";
+	else
+	{
+		_puts(s);
+		count++;
+	}
+	return (count);
 }
