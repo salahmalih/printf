@@ -17,7 +17,12 @@ int _printf(const char *format, ...)
     {
         if (*format == '%')
         {
+            format++;
             flags_t flags = {0, 0, 0, 0, 0, 0, 0};
+
+            while (get_flag(*format, &flags))
+                format++;
+
             int (*printer)(va_list, flags_t *) = get_print(*format);
 
             if (printer != NULL)
@@ -27,7 +32,7 @@ int _printf(const char *format, ...)
             else
             {
                 count += _putchar('%');
-                count += _putchar(*(format + 1));
+                count += _putchar(*format);
             }
 
             format++;
@@ -35,12 +40,11 @@ int _printf(const char *format, ...)
         else
         {
             count += _putchar(*format);
+            format++;
         }
-
-        format++;
     }
 
     va_end(args);
 
-    return (count);
+    return count;
 }
