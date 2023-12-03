@@ -61,18 +61,18 @@ int print_bigS(va_list l, flags_t *f)
  */
 int print_rev(va_list l, flags_t *f)
 {
+    char *s;
     int count = 0;
-    char *str;
+    int i;
 
     UNUSED(f);
-    str = va_arg(l, char *);
+    s = va_arg(l, char *);
+    if (!s)
+         s = "(null)";
 
-    if (str == NULL) {
-        count += _puts("(null)");
-        return count;
-    }
+     i = _strlen(s);
 
-    count += _puts_reverse(str);
+    count += _puts_reverse(s);
 
     return (count);
 }
@@ -84,18 +84,15 @@ int print_rev(va_list l, flags_t *f)
  */
 int _puts_reverse(char *str)
 {
-    int count = 0;
-    int i, length;
 
-    if (str == NULL) {
-        return (_puts("(null)"));
-    }
+    int count = 0;
+    int length, i;
 
     length = _strlen(str);
-
-    for (i = length - 1; i >= 0; i--) {
+    for (i = length - 1; i >= 0; i--)
+    {
         count += _putchar(str[i]);
     }
 
-    return (count);
+  return (count);
 }
