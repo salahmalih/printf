@@ -41,10 +41,12 @@ int _strlen(char *str)
 	return (len);
 }
 /**
- * convert - Converts a number to a specified base and returns the result as a string
+ * convert - Converts a number to a,
+ * base and returns the result as a string
  * @num: The number to convert
  * @base: The base to convert to
- * @lowercase: Flag to indicate whether to use lowercase (1) or uppercase (0) letters
+ * @lowercase: Flag to indicate whether to,
+ * use lowercase (1) or uppercase (0) letters
  * Return: A pointer to the converted string, or NULL on failure
  */
 char *convert(unsigned long int num, int base, int lowercase)
@@ -67,10 +69,12 @@ char *convert(unsigned long int num, int base, int lowercase)
 	return (ptr);
 }
 /**
- * convert_and_print - Converts a number to a specified base and prints it
+ * convert_and_print - Converts a number,
+ * to a specified base and prints it
  * @num: The number to convert
  * @base: The base to convert to
- * @uppercase: Flag to indicate whether to print in uppercase (1) or lowercase (0)
+ * @uppercase: Flag to indicate whether to,
+ * print in uppercase (1) or lowercase (0)
  * Return: Number of characters printed
  */
 int convert_and_print(unsigned long int num, int base, int uppercase)

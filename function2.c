@@ -27,7 +27,7 @@ int print_address(va_list l, flags_t *f)
  */
 int print_bigS(va_list l, flags_t *f)
 {
-	char *str ;
+	char *str;
 	int count = 0;
 
 	UNUSED(f);

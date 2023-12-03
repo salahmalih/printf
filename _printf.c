@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _printf - Produces output according to a format.
  * @format: The format string
@@ -18,13 +17,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			flags.plus = 0;
-			flags.space = 0;
-			flags.hash = 0;
-			flags.zero = 0;
-			flags.minus = 0;
-			flags.width = 0;
-			flags.precision = 0;
+			init_flags(&flags);
 			format++;
 			while (get_flag(*format, &flags) == 0)
 			{
@@ -50,4 +43,18 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
+}
+/**
+ * init_flags - Initializes a flags structure with default values
+ * @flags: Pointer to the flags structure to be initialized
+ */
+void init_flags(flags_t *flags)
+{
+	flags->plus = 0;
+	flags->space = 0;
+	flags->hash = 0;
+	flags->zero = 0;
+	flags->minus = 0;
+	flags->width = 0;
+	flags->precision = 0;
 }

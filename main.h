@@ -20,25 +20,25 @@
  */
 struct flags
 {
-    int plus;
-    int space;
-    int hash;
-    int zero;
-    int minus;
-    int width;
-    int precision;
+	int plus;
+	int space;
+	int hash;
+	int zero;
+	int minus;
+	int width;
+	int precision;
 };
 typedef struct flags flags_t;
 
 /**
- * struct format - Struct to hold function pointers for printf format specifiers
+ * struct format - Struct to function pointers for printf format specifiers
  * @specifier: Format specifier character
  * @printer: Function pointer to the corresponding printing function
  */
 struct format
 {
-    char specifier;
-    int (*printer)(va_list, flags_t *);
+	char specifier;
+	int (*printer)(va_list, flags_t *);
 };
 typedef struct format fmt_t;
 
@@ -87,5 +87,5 @@ int print_percent(va_list l, flags_t *f);
 
 /* tools */
 int _strlen(char *str);
-
+void init_flags(flags_t *flags);
 #endif

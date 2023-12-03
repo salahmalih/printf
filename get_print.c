@@ -1,6 +1,7 @@
 #include "main.h"
 /**
- * get_print - Selects the right printing function based on the format specifier
+ * get_print - Selects the right printing,
+ * function based on the format specifier
  * @s: The format specifier character
  * Return: A function pointer to the corresponding printing function
  */
@@ -23,6 +24,7 @@ int (*get_print(char s))(va_list, flags_t *)
 		{'R', print_rot13},
 		{'\0', NULL}};
 	int i = 0;
+
 	while (fmt_types[i].specifier != '\0')
 	{
 		if (fmt_types[i].specifier == s)
