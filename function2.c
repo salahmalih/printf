@@ -41,7 +41,7 @@ int print_bigS(va_list l, flags_t *f)
 		{
 			count += _putchar('\\');
 			count += _putchar('x');
-			count += convert_and_print(((unsigned char)(*str)), 16, 1);
+			count += convert_and_print((unsigned char)(*str), 16, 1);
 		}
 		else
 		{
@@ -49,10 +49,8 @@ int print_bigS(va_list l, flags_t *f)
 		}
 		str++;
 	}
-
 	return (count);
 }
-
 /**
  * print_rev - Prints a reversed string
  * @l: The argument list containing the string to print
