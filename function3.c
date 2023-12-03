@@ -43,16 +43,15 @@ int print_octal(va_list l, flags_t *f)
  */
 int print_hex(va_list l, flags_t *f)
 {
-	unsigned int hex;
+	unsigned int num = va_arg(l, unsigned int);
 	int count = 0;
 
-	UNUSED(f);
-	hex = va_arg(l, unsigned int);
-	count += convert_and_print(hex, 16, 0);
+	if (f->hash == 1 && num != 0)
+		count += _puts("0x");
 
+	count += convert_and_print(num, 16, 0);
 	return (count);
 }
-
 /**
  * print_hex_big - Prints a hexadecimal number in uppercase
  * @l: The argument list containing the hexadecimal number to print
@@ -61,16 +60,15 @@ int print_hex(va_list l, flags_t *f)
  */
 int print_hex_big(va_list l, flags_t *f)
 {
-	unsigned int hex;
+	unsigned int num = va_arg(l, unsigned int);
 	int count = 0;
 
-	UNUSED(f);
-	hex = va_arg(l, unsigned int);
-	count += convert_and_print(hex, 16, 1);
+	if (f->hash == 1 && num != 0)
+		count += _puts("0X");
 
+	count += convert_and_print(num, 16, 1);
 	return (count);
 }
-
 /**
  * print_char - Prints a character
  * @l: The argument list containing the character to print
