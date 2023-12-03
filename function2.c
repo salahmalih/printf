@@ -62,8 +62,9 @@ int print_bigS(va_list l, flags_t *f)
 int print_rev(va_list l, flags_t *f)
 {
     char *s;
-    int count = 0, i = 0;
-
+    int count = 0;
+    int i = 0;
+    
     UNUSED(f);
     s = va_arg(l, char *);
     if (!s)
