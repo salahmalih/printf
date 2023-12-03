@@ -8,7 +8,7 @@
  */
 int get_flag(char s, flags_t *f)
 {
-	int count = 0;
+	int count = -1;
 
 	switch (s)
 	{
@@ -32,8 +32,6 @@ int get_flag(char s, flags_t *f)
 			f->minus = 1;
 			count = 1;
 			break;
-		default:
-			return (-1);
 	}
 
 	return (count);
