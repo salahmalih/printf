@@ -6,31 +6,28 @@
  */
 int (*get_print(char s))(va_list, flags_t *)
 {
-    fmt_t fmt_types[] = {
-        {'c', print_char},
-        {'s', print_string},
-        {'%', print_percent},
-        {'i', print_int},
-        {'d', print_int},
-        {'b', print_binary},
-        {'u', print_unsigned},
-        {'o', print_octal},
-        {'x', print_hex},
-        {'X', print_hex_big},
-        {'p', print_address},
-        {'S', print_bigS},
-        {'r', print_rev},
-        {'R', print_rot13},
-        {'\0', NULL}};
+    fmt_t func_arr[] = {
+		{'i', print_int},
+		{'s', print_string},
+		{'c', print_char},
+		{'d', print_int},
+		{'u', print_unsigned},
+		{'x', print_hex},
+		{'X', print_hex_big},
+		{'b', print_binary},
+		{'o', print_octal},
+		{'R', print_rot13},
+		{'r', print_rev},
+		{'S', print_bigS},
+		{'p', print_address},
+		{'%', print_percent}
+		};
+	int flags = 14;
 
-    int i = 0;
+	register int i;
 
-    while (fmt_types[i].specifier != '\0')
-    {
-        if (fmt_types[i].specifier == s)
-            return (fmt_types[i].printer);
-        i++;
-    }
-
-    return (NULL);
+	for (i = 0; i < flags; i++)
+		if (func_arr[i].printer == s)
+			return (func_arr[i].printer);
+	return (NULL);
 }
