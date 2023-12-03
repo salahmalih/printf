@@ -36,8 +36,8 @@ int print_number(int n)
         count += _putchar('-');
         n = -n;
     }
-
-    count += convert_and_print((unsigned int)n, 10, 0);
+    else
+        count += convert_and_print((unsigned int)n, 10, 0);
 
     return (count);
 }
