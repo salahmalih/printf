@@ -52,35 +52,3 @@ int print_rot13(va_list l, flags_t *f)
 
     return (count);
 }
-
-/**
- * print_string - Prints a string
- * @l: The argument list containing the string to print
- * @f: Pointer to the flags structure
- * Return: Number of characters printed
- */
-int print_string(va_list l, flags_t *f)
-{
-    char *str;
-    int count = 0;
-
-    str = va_arg(l, char *);
-    if (str == NULL)
-        str = "(null)";
-
-    if (f->precision >= 0)
-    {
-        while (*str && f->precision > 0)
-        {
-            count += _putchar(*str);
-            str++;
-            f->precision--;
-        }
-    }
-    else
-    {
-        count += _puts(str);
-    }
-
-    return (count);
-}

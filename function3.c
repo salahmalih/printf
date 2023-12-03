@@ -97,3 +97,19 @@ int print_char(va_list l, flags_t *f)
 
     return (count);
 }
+/**
+ * print_string - Prints a string
+ * @l: The argument list containing the string to print
+ * @f: Pointer to the flags structure
+ * Return: Number of characters printed
+ */
+int print_string(va_list l, flags_t *f)
+{
+	char *s;
+
+    s = va_arg(l, char *);
+	UNUSED(f);
+	if (!s)
+		s = "(null)";
+	return (_puts(s));
+}
