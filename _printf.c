@@ -17,13 +17,16 @@ int _printf(const char *format, ...)
     {
         if (*format == '%')
         {
+            flags_t flags;
+            int (*printer)(va_list, flags_t *);
+
             format++;
-            flags_t flags = {0, 0, 0, 0, 0, 0, 0};
+            get_flag(*format, &flags);
 
             while (get_flag(*format, &flags))
                 format++;
 
-            int (*printer)(va_list, flags_t *) = get_print(*format);
+            printer = get_print(*format);
 
             if (printer != NULL)
             {
