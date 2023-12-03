@@ -9,15 +9,15 @@
 int print_address(va_list l, flags_t *f)
 {
     int count = 0;
-	void *addr ;
+    void *addr = va_arg(l, void *);
 
-	UNUSED(f);
-	addr = va_arg(l, void *);
+    UNUSED(f);
     count += _puts("0x");
     count += convert_and_print((uintptr_t)addr, 16, 0);
 
     return (count);
 }
+
 
 /**
  * print_bigS - Prints a string with non-printable characters
@@ -82,7 +82,7 @@ int print_reverse(char *str)
 {
     int count = 0;
     int length = 0;
-	int i = 0;
+    int i = 0;
 
     if (str == NULL)
         return _puts("(null)");
@@ -95,5 +95,5 @@ int print_reverse(char *str)
         count += _putchar(str[i]);
     }
 
-    return (count);
+    return count;
 }
