@@ -66,37 +66,17 @@ int print_rev(va_list l, flags_t *f)
 
     UNUSED(f);
     str = va_arg(l, char *);
-    if (str == NULL)
-        str = "(null)";
 
-    count += _puts_reverse(str);
-
-    return (count);
-}
-
-/**
- * _puts_reverse - Prints a string in reverse directly to standard output
- * @str: The string to print in reverse
- * Return: Number of characters printed
- */
-int _puts_reverse(char *str)
-{
-    int count = 0;
-    int i, length;
     if (str == NULL)
         return _puts("(null)");
 
-    length = _strlen(str);
+    int length = _strlen(str);
 
-    for (i = length - 1; i >= 0; i--)
+    for (int i = length - 1; i >= 0; i--)
     {
-        char z = str[i];
-
-        _putchar(z);
+        _putchar(str[i]);
         count++;
     }
 
     return (count);
 }
-
-
