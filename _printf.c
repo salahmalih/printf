@@ -26,6 +26,7 @@ int _printf(const char *format, ...)
             flags.width = 0;
             flags.precision = 0;
             format++;
+            printf("Debug: Specifier: %c\n", *format); 
             printer = get_print(*(format));
             if (printer != NULL)
             {
