@@ -13,21 +13,12 @@ int print_unsigned(va_list l, flags_t *f)
 
     UNUSED(f);
     num = va_arg(l, unsigned int);
-    count += print_number_unsigned(num);
 
-    return (count);
-}
-
-/**
- * print_number_unsigned - Prints an unsigned integer
- * @n: The unsigned integer to print
- * Return: Number of characters printed
- */
-int print_number_unsigned(unsigned int n)
-{
-    int count = 0;
-
-    count += convert_and_print((unsigned long int)n, 10, 0);
+    if (num == 0) {
+        count += _putchar('0');  // Print '0' for zero unsigned integers
+    } else {
+        count += print_number(num);
+    }
 
     return (count);
 }

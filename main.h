@@ -88,5 +88,4 @@ int print_percent(va_list l, flags_t *f);
 /* tools */
 int _strlen(char *str);
 int print_reverse(char *str);
-int print_number_unsigned(unsigned int n);
 #endif
