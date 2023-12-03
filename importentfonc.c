@@ -60,8 +60,9 @@ int convert_and_print(unsigned long int num, int base, int uppercase)
     if (converted == NULL)
         return -1;
 
-    if (base == 8)
-        count += handle_octal_padding(converted);
+    if (base == 8 && num != 0) {
+        count += _putchar('0');
+    }
 
     count += _puts(converted);
 
@@ -70,20 +71,6 @@ int convert_and_print(unsigned long int num, int base, int uppercase)
     return (count);
 }
 
-/**
- * handle_octal_padding - Handles padding for octal representation
- * @str: The octal string
- * Return: Number of characters printed
- */
-int handle_octal_padding(char *str)
-{
-    int count = 0;
-
-    if (str[0] != '0')
-        count += _putchar('0');
-
-    return (count);
-}
 
 /**
  * convert - Converts a number to a specified base and returns the result as a string

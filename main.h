@@ -89,5 +89,4 @@ int print_percent(va_list l, flags_t *f);
 int _strlen(char *str);
 int print_reverse(char *str);
 int print_number_unsigned(unsigned int n);
-int handle_octal_padding(char *str);
 #endif
