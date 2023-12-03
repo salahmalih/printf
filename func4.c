@@ -61,13 +61,14 @@ int print_rot13(va_list l, flags_t *f)
  */
 int print_string(va_list l, flags_t *f)
 {
-    char *str = va_arg(l, char *);
+    char *str;
     int count = 0;
 
+    *str = va_arg(l, char *);
     if (str == NULL)
-        return _puts("(null)");
+        str = "(null)";
 
-    if (f != NULL && f->precision >= 0)
+    if (f->precision >= 0)
     {
         while (*str && f->precision > 0)
         {
@@ -81,5 +82,5 @@ int print_string(va_list l, flags_t *f)
         count += _puts(str);
     }
 
-    return count;
+    return (count);
 }
