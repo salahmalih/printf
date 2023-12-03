@@ -2,33 +2,21 @@
 
 /**
  * _printf - Produces output according to a format.
- * @format: Format string containing the characters and specifiers.
- * Return: Length of the formatted output string.
+ * @format: The format string
+ * @...: Variable arguments
+ * Return: The number of characters printed (excluding the null byte)
  */
 int _printf(const char *format, ...)
 {
-    int (*printer)(va_list, flags_t *);
-    const char *p;
-    va_list arguments;
-    flags_t flags = {0, 0, 0, 0, 0, 0, 0};
+    va_list args;
+    int count = 0;
+    flags_t flags;
+    va_start(args, format);
 
-    register int count = 0;
-
-    va_start(arguments, format);
-
-    if (!format || (format[0] == '%' && !format[1]))
-        return (-1);
-
-    for (p = format; *p; p++)
+    while (format && *format)
     {
-        if (*p == '%')
+        if (*format == '%')
         {
-            p++;
-            if (*p == '%')
-            {
-                count += _putchar('%');
-                continue;
-            }
             flags.plus = 0;
             flags.space = 0;
             flags.hash = 0;
@@ -36,23 +24,27 @@ int _printf(const char *format, ...)
             flags.minus = 0;
             flags.width = 0;
             flags.precision = 0;
-            while (get_flag(*p, &flags))
-                p++;
-
-            printer = get_print(*p);
+            int (*printer)(va_list, flags_t *) = get_print(*(format + 1));
 
             if (printer != NULL)
-                count += printer(arguments, &flags);
+            {
+                count += printer(args, &flags);
+                format++;
+            }
             else
-                count += _printf("%%%c", *p);
+            {
+                count += _putchar('%');
+            }
         }
         else
         {
-            count += _putchar(*p);
+            count += _putchar(*format);
         }
+
+        format++;
     }
 
-    va_end(arguments);
+    va_end(args);
 
     return (count);
 }
