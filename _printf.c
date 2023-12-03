@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
     int (*printer)(va_list, flags_t *);
     const char *p;
     va_list arguments;
-    flags_t flags = {0, 0, 0, 0, 0, 0, 0};  // Initialize all flags to 0.
+    flags_t flags = {0, 0, 0, 0, 0, 0, 0};
 
     register int count = 0;
 
@@ -29,11 +29,13 @@ int _printf(const char *format, ...)
                 count += _putchar('%');
                 continue;
             }
-
-            // Reset flags for each new specifier.
-            flags = (flags_t){0, 0, 0, 0, 0, 0, 0};
-
-            // Process flags.
+            flags.plus = 0;
+            flags.space = 0;
+            flags.hash = 0;
+            flags.zero = 0;
+            flags.minus = 0;
+            flags.width = 0;
+            flags.precision = 0;
             while (get_flag(*p, &flags))
                 p++;
 
