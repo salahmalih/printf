@@ -11,14 +11,12 @@ int _printf(const char *format, ...)
     int count = 0;
 
     va_start(args, format);
-
+    flags_t flags = {0, 0, 0, 0, 0, 0, 0};
+    int (*printer)(va_list, flags_t *) = get_print(*format);
     while (format && *format)
     {
         if (*format == '%')
         {
-            flags_t flags = {0, 0, 0, 0, 0, 0, 0};
-            int (*printer)(va_list, flags_t *) = get_print(*format);
-
             if (printer != NULL)
             {
                 count += printer(args, &flags);
