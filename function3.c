@@ -15,7 +15,7 @@ int print_unsigned(va_list l, flags_t *f)
     num = va_arg(l, unsigned int);
 
     if (num == 0) {
-        count += _putchar('0');  // Print '0' for zero unsigned integers
+        count += _putchar('0');
     } else {
         count += print_number(num);
     }
