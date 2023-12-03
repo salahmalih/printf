@@ -61,21 +61,21 @@ int print_bigS(va_list l, flags_t *f)
  */
 int print_rev(va_list l, flags_t *f)
 {
-    char *str;
+    char *st;
     int count = 0;
     int i, length;
-    
-    UNUSED(f);
-    str = va_arg(l, char *);
 
-    if (str == NULL)
+    UNUSED(f);
+    st = va_arg(l, char *);
+
+    if (st == NULL)
         return _puts("(null)");
 
-    length = _strlen(str);
+    length = _strlen(st);
 
     for (i = length - 1; i >= 0; i--)
     {
-        _putchar(str[i]);
+        _putchar(st[i]);
         count++;
     }
 
