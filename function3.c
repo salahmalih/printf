@@ -79,12 +79,10 @@ int print_hex_big(va_list l, flags_t *f)
  */
 int print_char(va_list l, flags_t *f)
 {
-	char c;
 	int count = 0;
 
 	UNUSED(f);
-	c = va_arg(l, int);
-	count += _putchar(c);
+	count += _putchar(va_arg(l, int));
 
 	return (count);
 }
