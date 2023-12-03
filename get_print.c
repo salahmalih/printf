@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * get_print - Selects the right printing function based on the format specifier
  * @s: The format specifier character
