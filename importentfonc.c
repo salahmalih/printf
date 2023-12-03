@@ -82,7 +82,7 @@ char *convert(unsigned long int num, int base, int lowercase)
     unsigned long int temp = num;
 
     temp = num;
-    digits = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
+    digits = lowercase ? "0123456789ABCDEF" : "0123456789abcdef";
     while (temp != 0)
     {
         temp /= base;

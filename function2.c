@@ -13,7 +13,7 @@ int print_address(va_list l, flags_t *f)
 
     UNUSED(f);
     count += _puts("0x");
-    count += *convert((uintptr_t)addr, 16, 0);
+    count += convert_and_print((uintptr_t)addr, 16, 0);
 
     return (count);
 }
