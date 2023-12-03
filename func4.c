@@ -64,7 +64,7 @@ int print_string(va_list l, flags_t *f)
     char *str;
     int count = 0;
 
-    *str = va_arg(l, char *);
+    str = va_arg(l, char *);
     if (str == NULL)
         str = "(null)";
 
