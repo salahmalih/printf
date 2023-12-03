@@ -8,21 +8,14 @@
  */
 int print_unsigned(va_list l, flags_t *f)
 {
-    unsigned int num;
-    int count = 0;
+	unsigned int u;
+	char *str;
 
-    UNUSED(f);
-    num = va_arg(l, unsigned int);
-
-    if (num == 0) {
-        count += _putchar('0');
-    } else {
-        count += print_number(num);
-    }
-
-    return (count);
+    str = convert(u, 10, 0);
+    u = va_arg(l, unsigned int);
+	UNUSED(f);
+	return (_puts(str));
 }
-
 
 /**
  * print_octal - Prints an octal number
