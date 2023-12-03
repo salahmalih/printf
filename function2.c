@@ -11,7 +11,7 @@ int print_address(va_list l, flags_t *f)
     int count = 0;
 	void *addr ;
 
-	(void)f;
+	UNUSED(f);
 	addr = va_arg(l, void *);
     count += _puts("0x");
     count += convert_and_print(((uintptr_t)addr), 16, 0);
@@ -30,7 +30,7 @@ int print_bigS(va_list l, flags_t *f)
     char *str ;
     int count = 0;
 
-	(void)f;
+	UNUSED(f);
 	str = va_arg(l, char *);
     if (str == NULL)
         return _puts("(null)");
@@ -64,7 +64,7 @@ int print_rev(va_list l, flags_t *f)
     char *str;
     int count = 0;
 
-	(void)f;
+	UNUSED(f);
 	str = va_arg(l, char *);
     if (str == NULL)
         return _puts("(null)");

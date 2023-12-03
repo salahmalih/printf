@@ -41,3 +41,37 @@ int print_number(int n)
 
     return (count);
 }
+
+/**
+ * print_binary - Prints a binary representation of an unsigned integer
+ * @l: The argument list containing the unsigned integer to print
+ * @f: Pointer to the flags structure
+ * Return: Number of characters printed
+ */
+int print_binary(va_list l, flags_t *f)
+{
+    unsigned int binary = va_arg(l, unsigned int);
+    int count = 0;
+
+    UNUSED(f);
+    count += convert_and_print(binary, 2, 0);
+
+    return count;
+}
+
+
+/**
+ * print_percent - Prints a percent character '%'
+ * @l: The argument list (unused)
+ * @f: Pointer to the flags structure (unused)
+ * Return: Always returns 1 (the number of characters printed)
+ */
+int print_percent(va_list l, flags_t *f)
+{
+    UNUSED(l);
+    UNUSED(f);
+
+    _putchar('%');
+
+    return 1;
+}

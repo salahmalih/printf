@@ -11,7 +11,7 @@ int print_unsigned(va_list l, flags_t *f)
     unsigned int num;
     int count = 0;
 
-    (void)f;
+    UNUSED(f);
     num = va_arg(l, unsigned int);
     count += print_number(num);
 
@@ -49,7 +49,7 @@ int print_hex(va_list l, flags_t *f)
     unsigned int hex;
     int count = 0;
 
-    (void)f;
+    UNUSED(f);
     hex = va_arg(l, unsigned int);
     count += convert_and_print(hex, 16, 0);
 
@@ -67,7 +67,7 @@ int print_hex_big(va_list l, flags_t *f)
     unsigned int hex;
     int count = 0;
 
-    (void)f;
+    UNUSED(f);
     hex = va_arg(l, unsigned int);
     count += convert_and_print(hex, 16, 1);
 
@@ -85,7 +85,7 @@ int print_char(va_list l, flags_t *f)
     char c;
     int count = 0;
 
-     (void)f;
+    UNUSED(f);
     c = va_arg(l, int);
     count += _putchar(c);
 
