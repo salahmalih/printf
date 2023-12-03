@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
             flags.minus = 0;
             flags.width = 0;
             flags.precision = 0;
-            printer = get_print(*(format + 1));
+            printer = get_print(*(format));
 
             if (printer != NULL)
             {
