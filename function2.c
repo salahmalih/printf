@@ -61,19 +61,19 @@ int print_bigS(va_list l, flags_t *f)
  */
 int print_rev(va_list l, flags_t *f)
 {
-	int i = 0, j;
-	char *s = va_arg(l, char *);
+    int i = 0, j;
+    char *s;
 
+    UNUSED(f);
     s = va_arg(l, char *);
-	UNUSED(f);
-	if (!s)
-		s = "(null)";
+    if (!s)
+        s = "(null)";
 
-	while (s[i])
-		i++;
+    while (s[i])
+        i++;
 
-	for (j = i - 1; j >= 0; j--)
-		_putchar(s[j]);
+    for (j = i - 1; j >= 0; j--)
+        _putchar(s[j]);
 
-	return (i);
+    return (i);
 }
