@@ -7,7 +7,7 @@
  */
 int _putchar(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 /**
@@ -21,7 +21,7 @@ int _puts(char *str)
 	int i;
 
 	for (i = 0; str[i] != '\0'; i++)
-		_putchar(str[i]);
+	_putchar(str[i]);
 	return (i);
 }
 
@@ -33,12 +33,12 @@ int _puts(char *str)
  */
 int _strlen(char *str)
 {
-    int len = 0;
+	int len = 0;
 
-    while (str[len] != '\0')
-        len++;
+	while (str[len] != '\0')
+		len++;
 
-    return (len);
+	return (len);
 }
 /**
  * convert - Converts a number to a specified base and returns the result as a string
@@ -49,22 +49,22 @@ int _strlen(char *str)
  */
 char *convert(unsigned long int num, int base, int lowercase)
 {
-    static char buffer[50];
-    char * ptr;
-    static char *rep;
+	static char buffer[50];
+	char  *ptr;
+	static char *rep;
 
-    ptr = &buffer[49];
-    rep = (lowercase)
-        ? "0123456789ABCDEF"
-        : "0123456789abcdef";
+	ptr = &buffer[49];
+	rep = (lowercase)
+		? "0123456789ABCDEF"
+		: "0123456789abcdef";
 
-    *ptr = '\0';
-    do {
-        *--ptr = rep[num % base];
-        num /= base;
-    } while (num != 0);
+	*ptr = '\0';
+	do {
+		*--ptr = rep[num % base];
+		num /= base;
+	} while (num != 0);
 
-    return (ptr);
+	return (ptr);
 }
 /**
  * convert_and_print - Converts a number to a specified base and prints it
@@ -75,14 +75,14 @@ char *convert(unsigned long int num, int base, int lowercase)
  */
 int convert_and_print(unsigned long int num, int base, int uppercase)
 {
-    char *converted;
-    int count = 0;
+	char *converted;
+	int count = 0;
 
-    converted = convert(num, base, uppercase);
-    if (converted == NULL)
-        return -1;
+	converted = convert(num, base, uppercase);
+	if (converted == NULL)
+		return (-1);
 
-    count += _puts(converted);
+	count += _puts(converted);
 
-    return (count);
+	return (count);
 }

@@ -8,18 +8,18 @@
  */
 int print_int(va_list l, flags_t *f)
 {
-    int num;
-    int count = 0;
+	int num;
+	int count = 0;
 
 	num = va_arg(l, int);
-    if (f->plus && num >= 0)
-        count += _putchar('+');
-    else if (f->space && num >= 0)
-        count += _putchar(' ');
+	if (f->plus && num >= 0)
+		count += _putchar('+');
+	else if (f->space && num >= 0)
+		count += _putchar(' ');
 
-    count += print_number(num);
+	count += print_number(num);
 
-    return (count);
+	return (count);
 }
 
 /**
@@ -29,16 +29,16 @@ int print_int(va_list l, flags_t *f)
  */
 int print_number(int n)
 {
-    int count = 0;
+	int count = 0;
 
-    if (n < 0)
-    {
-        count += _putchar('-');
-        n = -n;
-    }
-        count += convert_and_print((unsigned int)n, 10, 0);
+	if (n < 0)
+	{
+		count += _putchar('-');
+		n = -n;
+	}
+	count += convert_and_print((unsigned int)n, 10, 0);
 
-    return (count);
+	return (count);
 }
 
 /**
@@ -49,13 +49,13 @@ int print_number(int n)
  */
 int print_binary(va_list l, flags_t *f)
 {
-    unsigned int binary = va_arg(l, unsigned int);
-    int count = 0;
+	unsigned int binary = va_arg(l, unsigned int);
+	int count = 0;
 
-    UNUSED(f);
-    count += convert_and_print(binary, 2, 0);
+	UNUSED(f);
+	count += convert_and_print(binary, 2, 0);
 
-    return count;
+	return (count);
 }
 
 
@@ -67,8 +67,8 @@ int print_binary(va_list l, flags_t *f)
  */
 int print_percent(va_list l, flags_t *f)
 {
-    UNUSED(l);
-    UNUSED(f);
+	UNUSED(l);
+	UNUSED(f);
 
-    return _putchar('%');
+	return (_putchar('%'));
 }

@@ -11,7 +11,7 @@ int print_unsigned(va_list l, flags_t *f)
 	unsigned int u = va_arg(l, unsigned int);
 	char *str;
 
-    str = convert(u, 10, 0);
+	str = convert(u, 10, 0);
 	UNUSED(f);
 	return (_puts(str));
 }
@@ -28,7 +28,7 @@ int print_octal(va_list l, flags_t *f)
 	char *str;
 	int count = 0;
 
-    str = convert(num, 8, 0);
+	str = convert(num, 8, 0);
 	if (f->hash == 1 && str[0] != '0')
 		count += _putchar('0');
 	count += _puts(str);
@@ -43,14 +43,14 @@ int print_octal(va_list l, flags_t *f)
  */
 int print_hex(va_list l, flags_t *f)
 {
-    unsigned int hex;
-    int count = 0;
+	unsigned int hex;
+	int count = 0;
 
-    UNUSED(f);
-    hex = va_arg(l, unsigned int);
-    count += convert_and_print(hex, 16, 0);
+	UNUSED(f);
+	hex = va_arg(l, unsigned int);
+	count += convert_and_print(hex, 16, 0);
 
-    return (count);
+	return (count);
 }
 
 /**
@@ -61,14 +61,14 @@ int print_hex(va_list l, flags_t *f)
  */
 int print_hex_big(va_list l, flags_t *f)
 {
-    unsigned int hex;
-    int count = 0;
+	unsigned int hex;
+	int count = 0;
 
-    UNUSED(f);
-    hex = va_arg(l, unsigned int);
-    count += convert_and_print(hex, 16, 1);
+	UNUSED(f);
+	hex = va_arg(l, unsigned int);
+	count += convert_and_print(hex, 16, 1);
 
-    return (count);
+	return (count);
 }
 
 /**
@@ -79,28 +79,12 @@ int print_hex_big(va_list l, flags_t *f)
  */
 int print_char(va_list l, flags_t *f)
 {
-    char c;
-    int count = 0;
+	char c;
+	int count = 0;
 
-    UNUSED(f);
-    c = va_arg(l, int);
-    count += _putchar(c);
-
-    return (count);
-}
-/**
- * print_string - Prints a string
- * @l: The argument list containing the string to print
- * @f: Pointer to the flags structure
- * Return: Number of characters printed
- */
-int print_string(va_list l, flags_t *f)
-{
-	char *s;
-
-    s = va_arg(l, char *);
 	UNUSED(f);
-	if (!s)
-		s = "(null)";
-	return (_puts(s));
+	c = va_arg(l, int);
+	count += _putchar(c);
+
+	return (count);
 }

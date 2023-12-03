@@ -8,14 +8,14 @@
  */
 int print_address(va_list l, flags_t *f)
 {
-    int count = 0;
-    void *addr = va_arg(l, void *);
+	int count = 0;
+	void *addr = va_arg(l, void *);
 
-    UNUSED(f);
-    count += _puts("0x");
-    count += convert_and_print((uintptr_t)addr, 16, 0);
+	UNUSED(f);
+	count += _puts("0x");
+	count += convert_and_print((uintptr_t)addr, 16, 0);
 
-    return (count);
+	return (count);
 }
 
 
@@ -27,30 +27,30 @@ int print_address(va_list l, flags_t *f)
  */
 int print_bigS(va_list l, flags_t *f)
 {
-    char *str ;
-    int count = 0;
+	char *str ;
+	int count = 0;
 
 	UNUSED(f);
 	str = va_arg(l, char *);
-    if (str == NULL)
-        return _puts("(null)");
+	if (str == NULL)
+		return (_puts("(null)"));
 
-    while (*str)
-    {
-        if (*str < 32 || *str >= 127)
-        {
-            count += _putchar('\\');
-            count += _putchar('x');
-            count += convert_and_print(((unsigned char)(*str)), 16, 1);
-        }
-        else
-        {
-            count += _putchar(*str);
-        }
-        str++;
-    }
+	while (*str)
+	{
+		if (*str < 32 || *str >= 127)
+		{
+			count += _putchar('\\');
+			count += _putchar('x');
+			count += convert_and_print(((unsigned char)(*str)), 16, 1);
+		}
+		else
+		{
+			count += _putchar(*str);
+		}
+		str++;
+	}
 
-    return (count);
+	return (count);
 }
 
 /**
@@ -61,23 +61,23 @@ int print_bigS(va_list l, flags_t *f)
  */
 int print_rev(va_list l, flags_t *f)
 {
-    char *st;
-    int count = 0;
-    int i, length;
+	char *st;
+	int count = 0;
+	int i, length;
 
-    UNUSED(f);
-    st = va_arg(l, char *);
+	UNUSED(f);
+	st = va_arg(l, char *);
 
-    if (st == NULL)
-        return _puts("(null)");
+	if (st == NULL)
+		return (_puts("(null)"));
 
-    length = _strlen(st);
+	length = _strlen(st);
 
-    for (i = length - 1; i >= 0; i--)
-    {
-        _putchar(st[i]);
-        count++;
-    }
+	for (i = length - 1; i >= 0; i--)
+	{
+		_putchar(st[i]);
+		count++;
+	}
 
-    return (count);
+	return (count);
 }
