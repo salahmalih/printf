@@ -58,8 +58,8 @@ char *convert(unsigned long int num, int base, int lowercase)
     static char *rep;
 
     rep = (lowercase)
-        ? "0123456789abcdef"
-        : "0123456789ABCDEF";
+        ? "0123456789ABCDEF"
+        : "0123456789abcdef";
 
     *ptr = '\0';
     do {
