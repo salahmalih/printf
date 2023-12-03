@@ -61,50 +61,19 @@ int print_bigS(va_list l, flags_t *f)
  */
 int print_rev(va_list l, flags_t *f)
 {
-    char *str;
-    int count = 0;
+	int i = 0, j;
+	char *s = va_arg(l, char *);
 
-    str = va_arg(l, char *);
-    if (str == NULL)
-        return _puts("(null)");
+    s = va_arg(l, char *);
+	UNUSED(f);
+	if (!s)
+		s = "(null)";
 
-    if (f->minus)
-    {
-        count += print_reverse(str);
-        while (count < f->width)
-            count += _putchar(' ');
-    }
-    else
-    {
-        while (count < f->width - _strlen(str))
-            count += _putchar(' ');
-        count += print_reverse(str);
-    }
+	while (s[i])
+		i++;
 
-    return (count);
-}
+	for (j = i - 1; j >= 0; j--)
+		_putchar(s[j]);
 
-/**
- * print_reverse - Prints a reversed string
- * @str: The string to print in reverse
- * Return: Number of characters printed
- */
-int print_reverse(char *str)
-{
-    int count = 0;
-    int length = 0;
-    int i = 0;
-
-    if (str == NULL)
-        return _puts("(null)");
-
-    while (str[length] != '\0')
-        length++;
-
-    for (i = length - 1; i >= 0; i--)
-    {
-        count += _putchar(str[i]);
-    }
-
-    return (count);
+	return (i);
 }
