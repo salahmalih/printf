@@ -8,11 +8,10 @@
  */
 int print_unsigned(va_list l, flags_t *f)
 {
-	unsigned int u;
+	unsigned int u = va_arg(l, unsigned int);
 	char *str;
 
     str = convert(u, 10, 0);
-    u = va_arg(l, unsigned int);
 	UNUSED(f);
 	return (_puts(str));
 }
