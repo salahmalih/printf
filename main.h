@@ -46,7 +46,6 @@ typedef struct format fmt_t;
 int print_int(va_list l, flags_t *f);
 int print_number(int n);
 int print_unsigned(va_list l, flags_t *f);
-int count_digit(int i);
 
 /* print_bases */
 int print_hex(va_list l, flags_t *f);
