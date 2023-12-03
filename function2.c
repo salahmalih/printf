@@ -63,16 +63,17 @@ int print_rev(va_list l, flags_t *f)
 {
     char *str;
     int count = 0;
-
+    int i, length;
+    
     UNUSED(f);
     str = va_arg(l, char *);
 
     if (str == NULL)
         return _puts("(null)");
 
-    int length = _strlen(str);
+    length = _strlen(str);
 
-    for (int i = length - 1; i >= 0; i--)
+    for (i = length - 1; i >= 0; i--)
     {
         _putchar(str[i]);
         count++;
