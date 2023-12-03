@@ -9,11 +9,11 @@
 int print_address(va_list l, flags_t *f)
 {
 	int count = 0;
-	void *addr = va_arg(l, void *);
+	unsigned long int addr = va_arg(l, unsigned long int);
 
 	UNUSED(f);
 	count += _puts("0x");
-	count += convert_and_print((uintptr_t)addr, 16, 0);
+	count += convert_and_print((unsigned long int)addr, 16, 0);
 
 	return (count);
 }
@@ -28,6 +28,7 @@ int print_address(va_list l, flags_t *f)
 int print_bigS(va_list l, flags_t *f)
 {
 	char *str;
+	char *rs;
 	int count = 0;
 
 	UNUSED(f);
@@ -39,9 +40,12 @@ int print_bigS(va_list l, flags_t *f)
 	{
 		if (*str < 32 || *str >= 127)
 		{
-			count += _putchar('\\');
-			count += _putchar('x');
-			count += convert_and_print((unsigned char)(*str), 16, 1);
+			_puts("\\x");
+			count += 2;
+			rs = convert((unsigned char)(*str), 16, 1);
+			if (!rs[1])
+				count += _putchar('0');
+			count += _puts(rs);
 		}
 		else
 		{
@@ -60,7 +64,6 @@ int print_bigS(va_list l, flags_t *f)
 int print_rev(va_list l, flags_t *f)
 {
 	char *st;
-	int count = 0;
 	int i, length;
 
 	UNUSED(f);
@@ -74,8 +77,7 @@ int print_rev(va_list l, flags_t *f)
 	for (i = length - 1; i >= 0; i--)
 	{
 		_putchar(st[i]);
-		count++;
 	}
 
-	return (count);
+	return (length);
 }
