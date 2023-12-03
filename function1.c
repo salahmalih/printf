@@ -42,7 +42,6 @@ int print_number(int n)
     return (count);
 }
 
-
 /**
  * print_binary - Prints a binary representation of an unsigned integer
  * @l: The argument list containing the unsigned integer to print
