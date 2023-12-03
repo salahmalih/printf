@@ -66,6 +66,6 @@ int print_string(va_list l, flags_t *f)
 	s = va_arg(l, char *);
 	UNUSED(f);
 	if (!s)
-		s = "(null)";
+		s = "(nil)";
 	return (_puts(s));
 }
