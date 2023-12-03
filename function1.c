@@ -2,69 +2,42 @@
 
 /**
  * print_int - Prints an integer
- * @l: Argument list
- * @f: Pointer to flags structure
+ * @l: The argument list containing the integer to print
+ * @f: Pointer to the flags structure
  * Return: Number of characters printed
  */
 int print_int(va_list l, flags_t *f)
 {
-    return count_digit(va_arg(l, int)) + print_unsigned(va_arg(l, unsigned int), f);
+    int num;
+    int count = 0;
+
+	num = va_arg(l, int);
+    if (f->plus && num >= 0)
+        count += _putchar('+');
+    else if (f->space && num >= 0)
+        count += _putchar(' ');
+
+    count += print_number(num);
+
+    return (count);
 }
 
 /**
- * count_digit - Counts the number of digits in an integer
- * @i: The integer
- * Return: Number of digits
+ * print_number - Prints an integer
+ * @n: The integer to print
+ * Return: Number of characters printed
  */
-int count_digit(int i)
+int print_number(int n)
 {
     int count = 0;
 
-    if (i == 0)
-        return 1;
-
-    while (i != 0)
+    if (n < 0)
     {
-        i /= 10;
-        count++;
+        count += _putchar('-');
+        n = -n;
     }
 
-    return count;
-}
+    count += convert_and_print(n, 10, 0);
 
-/**
- * print_unsigned - Prints an unsigned integer
- * @l: Argument list
- * @f: Pointer to flags structure
- * Return: Number of characters printed
- */
-int print_unsigned(va_list l, flags_t *f)
-{
-    return print_unsigned_helper(va_arg(l, unsigned int), f, 10);
-}
-
-/**
- * print_unsigned_helper - Helper function to print an unsigned integer
- * @n: The unsigned integer
- * @f: Pointer to flags structure
- * @base: The number base for conversion
- * Return: Number of characters printed
- */
-int print_unsigned_helper(unsigned int n, flags_t *f, int base)
-{
-    char *str = convert(n, base, 0);
-    int len = _puts(str);
-    free(str);
-    return len;
-}
-
-/**
- * print_binary - Prints a binary number
- * @l: Argument list
- * @f: Pointer to flags structure
- * Return: Number of characters printed
- */
-int print_binary(va_list l, flags_t *f)
-{
-    return print_unsigned_helper(va_arg(l, unsigned int), f, 2);
+    return (count);
 }

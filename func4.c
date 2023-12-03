@@ -1,66 +1,54 @@
-// func4.c
-
 #include "main.h"
-
-int print_rot13(va_list l, flags_t *f)
+/**
+ * rot13 - Encodes a character using ROT13 algorithm
+ * @c: The character to encode
+ * Return: The encoded character
+ */
+char rot13(char c)
 {
-    UNUSED(f); // Fix unused parameter warning
-    char *str = va_arg(l, char *);
-    int count = 0;
-
-    while (*str)
+    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
     {
-        if ((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z'))
+        if ((c >= 'A' && c <= 'Z' && c + 13 > 'Z') || (c >= 'a' && c <= 'z' && c + 13 > 'z'))
         {
-            char base = (*str >= 'a') ? 'a' : 'A';
-            _putchar(((char)(*str - base + 13) % 26) + base);
-            count++;
+            return c - 13;
         }
         else
         {
-            _putchar(*str);
-            count++;
+            return c + 13;
         }
-        str++;
     }
 
-    return count;
+    return (c);
 }
 
-int print_rot13string(va_list l, flags_t *f)
+/**
+ * print_rot13 - Prints a string in ROT13 encoding
+ * @l: The argument list containing the string to print
+ * @f: Pointer to the flags structure
+ * Return: Number of characters printed
+ */
+int print_rot13(va_list l, flags_t *f)
 {
-    UNUSED(f); // Fix unused parameter warning
-    char *str = va_arg(l, char *);
+    char *str;
     int count = 0;
 
-    if (!str)
-        return -1;
+	(void)f;
+	str = va_arg(l, char *);
+    if (str == NULL)
+        return _puts("(null)");
 
     while (*str)
     {
-        if ((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z'))
+        if ((*str >= 'A' && *str <= 'Z') || (*str >= 'a' && *str <= 'z'))
         {
-            char base = (*str >= 'a') ? 'a' : 'A';
-            _putchar(((char)(*str - base + 13) % 26) + base);
-            count++;
+            count += _putchar(rot13(*str));
         }
         else
         {
-            if (*str < 32 || *str >= 127)
-            {
-                _putchar('\\');
-                _putchar('x');
-                count += 2;
-                count += print_hex_helper(*str, 1);
-            }
-            else
-            {
-                _putchar(*str);
-                count++;
-            }
+            count += _putchar(*str);
         }
         str++;
     }
 
-    return count;
+    return (count);
 }

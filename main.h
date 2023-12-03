@@ -1,10 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-
+#include <stdlib.h>
+#include <stdint.h>
 #define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
 
@@ -44,7 +44,7 @@ typedef struct format fmt_t;
 
 /* print_nums */
 int print_int(va_list l, flags_t *f);
-void print_number(int n);
+int print_number(int n);
 int print_unsigned(va_list l, flags_t *f);
 int count_digit(int i);
 
@@ -76,14 +76,18 @@ int _puts(char *str);
 
 /* print_custom */
 int print_rot13(va_list l, flags_t *f);
-int print_reverse(va_list l, flags_t *f);
-int print_non_printable(va_list l, flags_t *f);
-int print_pointer(va_list l, flags_t *f);
+int print_rev(va_list l, flags_t *f);
+int print_bigS(va_list l, flags_t *f);
+
+/* print_address */
+int print_address(va_list l, flags_t *f);
+
+/* print_percent */
 int print_percent(va_list l, flags_t *f);
-int print_hex_helper(unsigned long int n, int uppercase);
-int print_rot13string(va_list l, flags_t *f);
 
 /* String */
 int _strlen(char *str);
-char *_strncat(char *dest, const char *src, int n);
+int print_reverse(char *str);
+int convert_and_print(unsigned long int num, int base, int uppercase);
+
 #endif

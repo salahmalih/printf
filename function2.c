@@ -1,54 +1,99 @@
 #include "main.h"
 
 /**
- * print_hex - Prints a hexadecimal number
- * @l: Argument list
- * @f: Pointer to flags structure
+ * print_address - Prints the address of a pointer
+ * @l: The argument list containing the pointer to print
+ * @f: Pointer to the flags structure
  * Return: Number of characters printed
  */
-int print_hex(va_list l, flags_t *f)
+int print_address(va_list l, flags_t *f)
 {
-    return print_unsigned_helper(va_arg(l, unsigned int), f, 16);
+    int count = 0;
+	void *addr ;
+
+	(void)f;
+	addr = va_arg(l, void *);
+    count += _puts("0x");
+    count += convert_and_print(((uintptr_t)addr), 16, 0);
+
+    return (count);
 }
 
 /**
- * print_hex_big - Prints a hexadecimal number in uppercase
- * @l: Argument list
- * @f: Pointer to flags structure
+ * print_bigS - Prints a string with non-printable characters
+ * @l: The argument list containing the string to print
+ * @f: Pointer to the flags structure
  * Return: Number of characters printed
  */
-int print_hex_big(va_list l, flags_t *f)
+int print_bigS(va_list l, flags_t *f)
 {
-    UNUSED(f);
-    char *str = convert(va_arg(l, unsigned long int), 16, 1);
-    int len = _puts(str);
-    free(str);
+    char *str ;
+    int count = 0;
 
-    return len;
+	(void)f;
+	str = va_arg(l, char *);
+    if (str == NULL)
+        return _puts("(null)");
+
+    while (*str)
+    {
+        if (*str < 32 || *str >= 127)
+        {
+            count += _putchar('\\');
+            count += _putchar('x');
+            count += convert_and_print(((unsigned char)(*str)), 16, 1);
+        }
+        else
+        {
+            count += _putchar(*str);
+        }
+        str++;
+    }
+
+    return (count);
 }
 
 /**
- * print_octal - Prints an octal number
- * @l: Argument list
- * @f: Pointer to flags structure
+ * print_rev - Prints a reversed string
+ * @l: The argument list containing the string to print
+ * @f: Pointer to the flags structure
  * Return: Number of characters printed
  */
-int print_octal(va_list l, flags_t *f)
+int print_rev(va_list l, flags_t *f)
 {
-    return print_unsigned_helper(va_arg(l, unsigned int), f, 8);
+    char *str;
+    int count = 0;
+
+	(void)f;
+	str = va_arg(l, char *);
+    if (str == NULL)
+        return _puts("(null)");
+
+    count += print_reverse(str);
+
+    return (count);
 }
-
 /**
- * print_string - Prints a string
- * @l: Argument list
- * @f: Pointer to flags structure
+ * print_reverse - Prints a reversed string
+ * @str: The string to print in reverse
  * Return: Number of characters printed
  */
-int print_string(va_list l, flags_t *f)
+int print_reverse(char *str)
 {
-    char *str = va_arg(l, char *);
-    int len = _puts(str);
-    UNUSED(f);
+    int count = 0;
+    int length = 0;
+	int i = 0;
 
-    return len;
+    if (str == NULL)
+        return _puts("(null)");
+
+    while (str[length] != '\0')
+        length++;
+
+    for (i = length - 1; i >= 0; i--)
+    {
+        count += _putchar(str[i]);
+    }
+
+    return (count);
 }

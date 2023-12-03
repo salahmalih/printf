@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _printf - Custom printf function
+ * _printf - Produces output according to a format.
  * @format: The format string
- * @...: Additional arguments for format specifiers
- * Return: Number of characters printed (excluding null byte)
+ * @...: Variable arguments
+ * Return: The number of characters printed (excluding the null byte)
  */
 int _printf(const char *format, ...)
 {
@@ -17,28 +17,24 @@ int _printf(const char *format, ...)
     {
         if (*format == '%')
         {
-            format++;
-            if (*format == '\0')
-                break;
-
             flags_t flags = {0, 0, 0, 0, 0, 0, 0};
-            while (get_flag(*format, &flags))
-                format++;
-
             int (*printer)(va_list, flags_t *) = get_print(*format);
-            if (printer)
+
+            if (printer != NULL)
+            {
                 count += printer(args, &flags);
+            }
             else
             {
-                _putchar('%');
-                _putchar(*format);
-                count += 2;
+                count += _putchar('%');
+                count += _putchar(*(format + 1));
             }
+
+            format++;
         }
         else
         {
-            _putchar(*format);
-            count++;
+            count += _putchar(*format);
         }
 
         format++;
@@ -46,5 +42,5 @@ int _printf(const char *format, ...)
 
     va_end(args);
 
-    return count;
+    return (count);
 }
