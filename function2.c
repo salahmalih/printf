@@ -12,9 +12,10 @@ int print_address(va_list l, flags_t *f)
 	unsigned long int addr = va_arg(l, unsigned long int);
 
 	UNUSED(f);
+	if (!addr)
+		return (_puts("(nil)"));
 	count += _puts("0x");
 	count += convert_and_print((unsigned long int)addr, 16, 0);
-
 	return (count);
 }
 
