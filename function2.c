@@ -63,7 +63,7 @@ int print_rev(va_list l, flags_t *f)
 {
     char *s;
     int count = 0;
-    int i;
+    int i, j;
 
     UNUSED(f);
     i = 0;
@@ -71,8 +71,8 @@ int print_rev(va_list l, flags_t *f)
     if (!s)
          s = "(null)";
     i = _strlen(s);
-
-    count += _puts_reverse(s);
+    for (j = i - 1; j >= 0; j--)
+        count += _puts_reverse(s);
 
     return (count);
 }
