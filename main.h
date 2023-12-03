@@ -85,9 +85,9 @@ int print_address(va_list l, flags_t *f);
 /* print_percent */
 int print_percent(va_list l, flags_t *f);
 
-/* String */
+/* tools */
 int _strlen(char *str);
 int print_reverse(char *str);
-
+int print_number_unsigned(unsigned int n);
 
 #endif
