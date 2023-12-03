@@ -60,17 +60,12 @@ int convert_and_print(unsigned long int num, int base, int uppercase)
     if (converted == NULL)
         return -1;
 
-    if (base == 8 && num != 0) {
-        count += _putchar('0');
-    }
-
     count += _puts(converted);
 
     free(converted);
 
     return (count);
 }
-
 
 /**
  * convert - Converts a number to a specified base and returns the result as a string
