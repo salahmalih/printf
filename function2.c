@@ -63,14 +63,14 @@ int print_rev(va_list l, flags_t *f)
 {
     char *s;
     int count = 0;
-    int i = 0;
-    
+    int i;
+
     UNUSED(f);
+    i = 0;
     s = va_arg(l, char *);
     if (!s)
          s = "(null)";
-
-     i = _strlen(s);
+    i = _strlen(s);
 
     count += _puts_reverse(s);
 
