@@ -27,21 +27,25 @@ int print_int(va_list l, flags_t *f)
  * @n: The integer to print
  * Return: Number of characters printed
  */
-void print_number(int n)
+int print_number(int n)
 {
-	unsigned int n1;
+    unsigned int n1;
+    int count = 0;
 
-	if (n < 0)
-	{
-		_putchar('-');
-		n1 = -n;
-	}
-	else
-		n1 = n;
+    if (n < 0)
+    {
+        count += _putchar('-');
+        n1 = -n;
+    }
+    else
+        n1 = n;
 
-	if (n1 / 10)
-		print_number(n1 / 10);
-	_putchar((n1 % 10) + '0');
+    if (n1 / 10)
+        count += print_number(n1 / 10);
+
+    count += _putchar((n1 % 10) + '0');
+
+    return count;
 }
 
 /**
