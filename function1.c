@@ -71,7 +71,5 @@ int print_percent(va_list l, flags_t *f)
     UNUSED(l);
     UNUSED(f);
 
-    _putchar('%');
-
-    return 1;
+    return _putchar('%');
 }
