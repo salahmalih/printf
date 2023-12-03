@@ -64,15 +64,26 @@ int print_rev(va_list l, flags_t *f)
     char *str;
     int count = 0;
 
-	UNUSED(f);
-	str = va_arg(l, char *);
+    str = va_arg(l, char *);
     if (str == NULL)
         return _puts("(null)");
 
-    count += print_reverse(str);
+    if (f->minus)
+    {
+        count += print_reverse(str);
+        while (count < f->width)
+            count += _putchar(' ');
+    }
+    else
+    {
+        while (count < f->width - _strlen(str))
+            count += _putchar(' ');
+        count += print_reverse(str);
+    }
 
     return (count);
 }
+
 /**
  * print_reverse - Prints a reversed string
  * @str: The string to print in reverse
@@ -95,5 +106,5 @@ int print_reverse(char *str)
         count += _putchar(str[i]);
     }
 
-    return count;
+    return (count);
 }
