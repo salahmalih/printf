@@ -77,10 +77,12 @@ int convert_and_print(unsigned long int num, int base, int uppercase)
 char *convert(unsigned long int num, int base, int lowercase)
 {
     char *result;
-    char *digits = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
+    char *digits;
     int size = 0;
     unsigned long int temp = num;
 
+    temp = num;
+    digits = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
     while (temp != 0)
     {
         temp /= base;
