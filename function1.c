@@ -37,10 +37,11 @@ int print_number(int n)
         n = -n;
     }
 
-    count += convert_and_print(n, 10, 0);
+    count += convert_and_print((unsigned int)n, 10, 0);
 
     return (count);
 }
+
 
 /**
  * print_binary - Prints a binary representation of an unsigned integer
